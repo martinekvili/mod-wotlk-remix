@@ -4,10 +4,9 @@
  * https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
  */
 
-#include "ObjectMgr.h"
 #include "Player.h"
 #include "ScriptMgr.h"
-#include "SharedDefines.h"
+#include "SpellAutoLearnMgr.h"
 #include "Trainer.h"
 
 // Add player scripts
@@ -22,57 +21,12 @@ public:
         if (oldLevel >= level)
             return;
 
-        uint32 trainerCreatureId = getClassTrainerCreatureId(player);
-        if (trainerCreatureId == 0)
-            return;
-
-        Trainer::Trainer *trainer = sObjectMgr->GetTrainer(trainerCreatureId);
+        Trainer::Trainer *trainer = SpellAutoLearnMgr::GetTrainerForPlayer(player);
         if (!trainer)
             return;
 
-        for (Trainer::Spell const &spell : trainer->GetSpells())
-        {
-            if (!trainer->CanTeachSpell(player, &spell))
-                continue;
-
-            // learn explicitly or cast explicitly
-            if (spell.IsCastable())
-                player->CastSpell(player, spell.SpellId, true);
-            else
-                player->learnSpell(spell.SpellId, false);
-        }
-    }
-
-private:
-    uint32 getClassTrainerCreatureId(Player const *player) const
-    {
-        TeamId teamId = player->GetTeamId();
-
-        switch (player->getClass())
-        {
-        case CLASS_WARRIOR:
-            return 913; // Lyria Du Lac
-
-        case CLASS_PALADIN:
-            if (teamId == TEAM_ALLIANCE)
-                return 927; // Brother Wilhelm
-            else if (teamId == TEAM_HORDE)
-                return 16275; // Noellene
-            else
-                return 0;
-
-        case CLASS_HUNTER:
-            return 987; // Ogromm
-
-        case CLASS_ROGUE:
-            return 917; // Keryn Sylvius
-
-        case CLASS_PRIEST:
-            return 376; // High Priestess Laurena
-
-        default:
-            return 0;
-        }
+        SpellAutoLearnMgr::TeachTrainerSpells(player, trainer);
+        sSpellAutoLearnMgr->TeachQuestSpells(player, trainer);
     }
 };
 
