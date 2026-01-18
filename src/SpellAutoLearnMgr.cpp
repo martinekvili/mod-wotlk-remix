@@ -14,6 +14,26 @@ SpellAutoLearnMgr::SpellAutoLearnMgr()
              createSpell(1579, 10), // Tame Beast
              createSpell(5300, 10), // Beast Training
          }},
+        {CLASS_DEATH_KNIGHT,
+         {
+             createSpell(52328, 55), // Summon Deathcharger (Summon)
+             createSpell(53431, 55), // Runeforging
+             createSpell(52821, 55), // Teach: Death Gate
+         }},
+        {CLASS_SHAMAN,
+         {
+             createSpell(8073, 4),  // Stoneskin Totem (Rank 1)
+             createSpell(2075, 10), // Searing Totem (Rank 1)
+             createSpell(5396, 20), // Healing Stream Totem (Rank 1)
+         }},
+        {CLASS_WARLOCK,
+         {
+             createSpell(11520, 10), // Teach Summon Voidwalker (Summon)
+             createSpell(11519, 20), // Teach Summon Succubus (Summon)
+             createSpell(1373, 30),  // Teach Summon Felhunter (Summon)
+             createSpell(1413, 50),  // Inferno (Summon)
+             createSpell(20700, 60), // Ritual of Doom
+         }},
     };
 }
 
