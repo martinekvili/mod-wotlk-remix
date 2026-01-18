@@ -5,13 +5,13 @@
 [worldserver]
 
 ########################################
-# My module configuration
+# Wrath of the Lich King Remix configuration
 ########################################
 #
-#    MyModule.Enable
-#        Description: Enable my module and print "Hello World" message at server start
+#    WotlkRemix.EnableSpellAutoLearn
+#        Description: Enable players automatically learning spells when they become eligible, no need to talk to a trainer / complete a quest
 #        Default:     0 - Disabled
 #                     1 - Enabled
 #
 
-MyModule.Enable = 1
+WotlkRemix.EnableSpellAutoLearn = 1

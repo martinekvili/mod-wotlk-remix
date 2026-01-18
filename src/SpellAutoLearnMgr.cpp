@@ -35,12 +35,33 @@ SpellAutoLearnMgr::SpellAutoLearnMgr()
              createSpell(20700, 60), // Ritual of Doom
          }},
     };
+
+    shamanTotems = {
+        ShamanTotem{5175, 2, 4},  // Earth Totem
+        ShamanTotem{5176, 4, 10}, // Fire Totem
+        ShamanTotem{5177, 5, 20}, // Water Totem
+        ShamanTotem{5178, 3, 30}, // Air Totem
+    };
 }
 
 SpellAutoLearnMgr const *SpellAutoLearnMgr::instance()
 {
     static SpellAutoLearnMgr instance;
     return &instance;
+}
+
+void SpellAutoLearnMgr::AutoTeachSpells(Player *player) const
+{
+    if (!sConfigMgr->GetOption<bool>("WotlkRemix.EnableSpellAutoLearn", false))
+        return;
+
+    Trainer::Trainer *trainer = GetTrainerForPlayer(player);
+    if (!trainer)
+        return;
+
+    TeachTrainerSpells(player, trainer);
+    TeachQuestSpells(player, trainer);
+    GrantShamanTotems(player);
 }
 
 Trainer::Trainer *SpellAutoLearnMgr::GetTrainerForPlayer(Player const *player)
@@ -65,6 +86,25 @@ void SpellAutoLearnMgr::TeachQuestSpells(Player *player, Trainer::Trainer *train
 
     std::vector<Trainer::Spell> questSpells = it->second;
     tryTeachSpells(player, questSpells, trainer);
+}
+
+void SpellAutoLearnMgr::GrantShamanTotems(Player *player) const
+{
+    if (player->getClass() != CLASS_SHAMAN)
+        return;
+
+    for (ShamanTotem const &shamanTotem : shamanTotems)
+    {
+        // check level requirement
+        if (player->GetLevel() < shamanTotem.reqLevel)
+            continue;
+
+        // check if player already owns this totem
+        if (player->HasItemTotemCategory(shamanTotem.totemCategory))
+            continue;
+
+        player->AddItem(shamanTotem.itemId, 1);
+    }
 }
 
 Trainer::Spell SpellAutoLearnMgr::createSpell(uint32 spellId, uint8 reqLevel)

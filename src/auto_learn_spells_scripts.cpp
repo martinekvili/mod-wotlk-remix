@@ -13,7 +13,12 @@
 class AutoLearnSpellsScript : public PlayerScript
 {
 public:
-    AutoLearnSpellsScript() : PlayerScript("AutoLearnSpells") {}
+    AutoLearnSpellsScript() : PlayerScript("AutoLearnSpells", {PLAYERHOOK_ON_LOGIN, PLAYERHOOK_ON_LEVEL_CHANGED}) {}
+
+    void OnPlayerLogin(Player *player) override
+    {
+        sSpellAutoLearnMgr->AutoTeachSpells(player);
+    }
 
     void OnPlayerLevelChanged(Player *player, uint8 oldLevel) override
     {
@@ -21,12 +26,7 @@ public:
         if (oldLevel >= level)
             return;
 
-        Trainer::Trainer *trainer = SpellAutoLearnMgr::GetTrainerForPlayer(player);
-        if (!trainer)
-            return;
-
-        SpellAutoLearnMgr::TeachTrainerSpells(player, trainer);
-        sSpellAutoLearnMgr->TeachQuestSpells(player, trainer);
+        sSpellAutoLearnMgr->AutoTeachSpells(player);
     }
 };
 
