@@ -1,6 +1,7 @@
 #include "SpellAutoLearnMgr.h"
 #include "SharedDefines.h"
 #include "ObjectMgr.h"
+#include "Config.h"
 
 SpellAutoLearnMgr::SpellAutoLearnMgr()
 {

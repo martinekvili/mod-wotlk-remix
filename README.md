@@ -7,4 +7,6 @@ The goal of this module is to achieve a Remix-like experience (think [Pandaria](
 - [ ] Retail-like spell learning experience
   - Spells should be automatically learned when they become eligible, no need to talk to a trainer / complete a quest
   - _Note: I realized halfway in that [mod-learnspells](https://github.com/noisiver/mod-learnspells) already does this, however, their implementation differs enough (using existing Trainer data vs custom SQL for spells) that I decided I'll keep mine. Still, it was good inspiration, especially for the Shaman totem stuff. Definitely worth a check out!_
-- ...
+- [ ] Instant riding skill and flying mount
+  - Players should immediately learn all riding skills and get an appropriate mount when first logging in
+- [ ] ...
