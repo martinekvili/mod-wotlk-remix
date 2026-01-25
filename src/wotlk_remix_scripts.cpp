@@ -21,6 +21,9 @@ public:
 
     void OnPlayerFirstLogin(Player *player) override
     {
+        // teleport player to Dalaran
+        player->TeleportTo(571, 5807.75, 588.347, 661.505, 1.663);
+
         InstantRidingMgr::ApplyInstantRiding(player);
     }
 
