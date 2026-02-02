@@ -15,14 +15,15 @@ public:
                   PLAYERHOOK_ON_FIRST_LOGIN,
                   PLAYERHOOK_ON_LOGIN,
                   PLAYERHOOK_ON_LEVEL_CHANGED,
+                  PLAYERHOOK_ON_PLAYER_LEARN_TALENTS,
               })
     {
     }
 
     void OnPlayerFirstLogin(Player *player) override
     {
-        // teleport player to Dalaran
-        player->TeleportTo(571, 5807.75, 588.347, 661.505, 1.663);
+        // teleport player to Krasus' Landing
+        player->TeleportTo(571u, 5813.84f, 449.122f, 658.752f, 1.16086f);
 
         InstantRidingMgr::ApplyInstantRiding(player);
     }
@@ -38,6 +39,11 @@ public:
         if (oldLevel >= level)
             return;
 
+        sSpellAutoLearnMgr->AutoTeachSpells(player);
+    }
+
+    void OnPlayerLearnTalents(Player *player, uint32 /*talentId*/, uint32 /*talentRank*/, uint32 /*spellid*/) override
+    {
         sSpellAutoLearnMgr->AutoTeachSpells(player);
     }
 };

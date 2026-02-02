@@ -4,10 +4,10 @@ The goal of this module is to achieve a Remix-like experience (think [Pandaria](
 
 ## Planned Features
 
-- [ ] Retail-like spell learning experience
+- [x] Retail-like spell learning experience
   - Spells should be automatically learned when they become eligible, no need to talk to a trainer / complete a quest
   - _Note: I realized halfway in that [mod-learnspells](https://github.com/noisiver/mod-learnspells) already does this, however, their implementation differs enough (using existing Trainer data vs custom SQL for spells) that I decided I'll keep mine. Still, it was good inspiration, especially for the Shaman totem stuff. Definitely worth a check out!_
-- [ ] Instant riding skill and flying mount
+- [x] Instant riding skill and flying mount
   - Players should immediately learn all riding skills and get an appropriate mount when first logging in
 - [ ] Northrend only
   - Take the "limited to one continent" idea from Pandaria Remix:
@@ -21,3 +21,63 @@ The goal of this module is to achieve a Remix-like experience (think [Pandaria](
     - [ ] [The Keeper's Favor](https://www.wowhead.com/wotlk/quest=13073/the-keepers-favor) and [The Will of the Naaru](https://www.wowhead.com/wotlk/quest=13081/the-will-of-the-naaru) are part of the [Crusader Bridenbrad](https://www.wowhead.com/wotlk/npc=30562/crusader-bridenbrad) storyline which take the player to Moonglade and Shattrath City respectively.
     - [ ] Journey To The Sunwell ([Horde](https://wowclassicdb.com/wotlk/quest/24562) / [Alliance](https://wowclassicdb.com/wotlk/quest/24522)) is part of the [Restoring the Battered Hilt and Obtaining Quel’delar](https://www.warcrafttavern.com/wotlk/guides/battered-hilt-quest-guide/) questline that takes the player to the Isle of Quel’Danas.
 - [ ] ...
+
+## World Server Config
+
+### General
+
+- Set the project's birth date
+  ```
+  BirthdayTime = 1768161476
+  ```
+- Limit maximum number of players
+  ```
+  PlayerLimit = 10
+  ```
+- Set realm zone to "English"
+  ```
+  RealmZone = 8
+  ```
+
+### Specific to WotLK Remix
+
+- Automatically gain max weapon/defense skill
+  ```
+  AlwaysMaxWeaponSkill = 1
+  ```
+- Disable creation of Death Knight characters
+  ```
+  CharacterCreating.Disabled.ClassMask = 32
+  ```
+- Start at level 68
+  ```
+  StartPlayerLevel = 68
+  ```
+- Disable cinematic intro at first login after character creation
+  ```
+  SkipCinematics = 2
+  ```
+- Resetting talents doesn't cost anything
+  ```
+  NoResetTalentsCost = 1
+  ```
+- Disable durability loss
+  ```
+  DurabilityLoss.OnDeath = 0
+  DurabilityLossChance.Damage = 0
+  DurabilityLossChance.Absorb = 0
+  DurabilityLossChance.Parry = 0
+  DurabilityLossChance.Block = 0
+  ```
+- Disable Wintergrasp
+  ```
+  Wintergrasp.Enable = 2
+  ```
+- Disable continent transports (ships, zeppelins, etc.)
+  ```
+  IsContinentTransport.Enabled = 0
+  ```
+- Turn on infinite ammo
+  ```
+  InfiniteAmmo.Enabled = 1
+  ```

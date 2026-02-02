@@ -16,7 +16,7 @@ void InstantRidingMgr::ApplyInstantRiding(Player *player)
 
 void InstantRidingMgr::TeachAllRidingSkills(Player *player)
 {
-    Trainer::Trainer *ridingTrainer = sObjectMgr->GetTrainer(28746); // Pilot Vic
+    Trainer::Trainer *ridingTrainer = sObjectMgr->GetTrainer(28746u); // Pilot Vic
     if (!ridingTrainer)
         return;
 
@@ -38,7 +38,7 @@ void InstantRidingMgr::GrantDefaultMount(Player *player)
 {
     // get the appropriate (very fast) mount players can start with
     uint32 defaultMountSpell = getDefaultMountSpellForPlayer(player);
-    if (defaultMountSpell == 0)
+    if (defaultMountSpell == 0u)
         return;
 
     teachSpell(player, defaultMountSpell);
@@ -58,10 +58,10 @@ uint32 InstantRidingMgr::getDefaultMountSpellForPlayer(Player const *player)
     switch (player->GetTeamId())
     {
     case TEAM_ALLIANCE:
-        return sConfigMgr->GetOption<uint32>("WotlkRemix.InstantRidingAllianceDefaultMountSpell", 32242); // Swift Blue Gryphon
+        return sConfigMgr->GetOption<uint32>("WotlkRemix.InstantRidingAllianceDefaultMountSpell", 32242u); // Swift Blue Gryphon
     case TEAM_HORDE:
-        return sConfigMgr->GetOption<uint32>("WotlkRemix.InstantRidingHordeDefaultMountSpell", 32246); // Swift Red Wind Rider
+        return sConfigMgr->GetOption<uint32>("WotlkRemix.InstantRidingHordeDefaultMountSpell", 32246u); // Swift Red Wind Rider
     default:
-        return 0;
+        return 0u;
     }
 }

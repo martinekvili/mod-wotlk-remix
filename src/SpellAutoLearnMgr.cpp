@@ -8,40 +8,40 @@ SpellAutoLearnMgr::SpellAutoLearnMgr()
     questSpellsByClass = {
         {CLASS_PALADIN,
          {
-             createSpell(7329, 12), // Redemption (Rank 1)
+             createSpell(7329u, 12u), // Redemption (Rank 1)
          }},
         {CLASS_HUNTER,
          {
-             createSpell(1579, 10), // Tame Beast
-             createSpell(5300, 10), // Beast Training
+             createSpell(1579u, 10u), // Tame Beast
+             createSpell(5300u, 10u), // Beast Training
          }},
         {CLASS_DEATH_KNIGHT,
          {
-             createSpell(52328, 55), // Summon Deathcharger (Summon)
-             createSpell(53431, 55), // Runeforging
-             createSpell(52821, 55), // Teach: Death Gate
+             createSpell(52328u, 55u), // Summon Deathcharger (Summon)
+             createSpell(53431u, 55u), // Runeforging
+             createSpell(52821u, 55u), // Teach: Death Gate
          }},
         {CLASS_SHAMAN,
          {
-             createSpell(8073, 4),  // Stoneskin Totem (Rank 1)
-             createSpell(2075, 10), // Searing Totem (Rank 1)
-             createSpell(5396, 20), // Healing Stream Totem (Rank 1)
+             createSpell(8073u, 4u),  // Stoneskin Totem (Rank 1)
+             createSpell(2075u, 10u), // Searing Totem (Rank 1)
+             createSpell(5396u, 20u), // Healing Stream Totem (Rank 1)
          }},
         {CLASS_WARLOCK,
          {
-             createSpell(11520, 10), // Teach Summon Voidwalker (Summon)
-             createSpell(11519, 20), // Teach Summon Succubus (Summon)
-             createSpell(1373, 30),  // Teach Summon Felhunter (Summon)
-             createSpell(1413, 50),  // Inferno (Summon)
-             createSpell(20700, 60), // Ritual of Doom
+             createSpell(11520u, 10u), // Teach Summon Voidwalker (Summon)
+             createSpell(11519u, 20u), // Teach Summon Succubus (Summon)
+             createSpell(1373u, 30u),  // Teach Summon Felhunter (Summon)
+             createSpell(1413u, 50u),  // Inferno (Summon)
+             createSpell(20700u, 60u), // Ritual of Doom
          }},
     };
 
     shamanTotems = {
-        ShamanTotem{5175, 2, 4},  // Earth Totem
-        ShamanTotem{5176, 4, 10}, // Fire Totem
-        ShamanTotem{5177, 5, 20}, // Water Totem
-        ShamanTotem{5178, 3, 30}, // Air Totem
+        ShamanTotem{5175u, 2u, 4u},  // Earth Totem
+        ShamanTotem{5176u, 4u, 10u}, // Fire Totem
+        ShamanTotem{5177u, 5u, 20u}, // Water Totem
+        ShamanTotem{5178u, 3u, 30u}, // Air Totem
     };
 }
 
@@ -60,8 +60,8 @@ void SpellAutoLearnMgr::AutoTeachSpells(Player *player) const
     if (!trainer)
         return;
 
-    TeachTrainerSpells(player, trainer);
     TeachQuestSpells(player, trainer);
+    TeachTrainerSpells(player, trainer);
     GrantShamanTotems(player);
 }
 
@@ -124,42 +124,42 @@ uint32 SpellAutoLearnMgr::getClassTrainerCreatureId(Player const *player)
     switch (player->getClass())
     {
     case CLASS_WARRIOR:
-        return 913; // Lyria Du Lac
+        return 913u; // Lyria Du Lac
 
     case CLASS_PALADIN:
         if (teamId == TEAM_ALLIANCE)
-            return 927; // Brother Wilhelm
+            return 927u; // Brother Wilhelm
         else if (teamId == TEAM_HORDE)
-            return 16275; // Noellene
+            return 16275u; // Noellene
         else
             return 0;
 
     case CLASS_HUNTER:
-        return 987; // Ogromm
+        return 987u; // Ogromm
 
     case CLASS_ROGUE:
-        return 917; // Keryn Sylvius
+        return 917u; // Keryn Sylvius
 
     case CLASS_PRIEST:
-        return 376; // High Priestess Laurena
+        return 376u; // High Priestess Laurena
 
     case CLASS_DEATH_KNIGHT:
-        return 28471; // Lady Alistra
+        return 28471u; // Lady Alistra
 
     case CLASS_SHAMAN:
-        return 986; // Haromm
+        return 986u; // Haromm
 
     case CLASS_MAGE:
-        return 328; // Zaldimar Wefhellt
+        return 328u; // Zaldimar Wefhellt
 
     case CLASS_WARLOCK:
-        return 461; // Demisette Cloyce
+        return 461u; // Demisette Cloyce
 
     case CLASS_DRUID:
-        return 3033; // Turak Runetotem
+        return 3033u; // Turak Runetotem
 
     default:
-        return 0;
+        return 0u;
     }
 }
 
