@@ -25,6 +25,9 @@ public:
         // teleport player to Krasus' Landing
         player->TeleportTo(571u, 5813.84f, 449.122f, 658.752f, 1.16086f);
 
+        // set hearthstone
+        player->SetHomebind(WorldLocation{571u, 5700.85f, 290.523f, 575.638f}, 4601u);
+
         InstantRidingMgr::ApplyInstantRiding(player);
     }
 

@@ -1,9 +1,9 @@
 -- Wintergrasp should no longer be a PVP Zone
-SET @wintergraspAreaID = 4197;
+SET @WintergraspAreaId = 4197;
 
 DELETE FROM areatable_dbc
-WHERE `ID` = @wintergraspAreaID
-  OR `ParentAreaID` = @wintergraspAreaID;
+WHERE `ID` = @WintergraspAreaId
+  OR `ParentAreaID` = @WintergraspAreaId;
 
 INSERT INTO areatable_dbc
   (`ID`,`ContinentID`,`ParentAreaID`,`AreaBit`,`Flags`,`SoundProviderPref`,`SoundProviderPrefUnderwater`,`AmbienceID`,`ZoneMusic`,`IntroSound`,`ExplorationLevel`,`AreaName_Lang_enUS`,`AreaName_Lang_enGB`,`AreaName_Lang_koKR`,`AreaName_Lang_frFR`,`AreaName_Lang_deDE`,`AreaName_Lang_enCN`,`AreaName_Lang_zhCN`,`AreaName_Lang_enTW`,`AreaName_Lang_zhTW`,`AreaName_Lang_esES`,`AreaName_Lang_esMX`,`AreaName_Lang_ruRU`,`AreaName_Lang_ptPT`,`AreaName_Lang_ptBR`,`AreaName_Lang_itIT`,`AreaName_Lang_Unk`,`AreaName_Lang_Mask`,`FactionGroupMask`,`LiquidTypeID_1`,`LiquidTypeID_2`,`LiquidTypeID_3`,`LiquidTypeID_4`,`MinElevation`,`Ambient_Multiplier`,`Lightid`)
@@ -27,10 +27,9 @@ VALUES
   (4611,571,4197,2672,1224754241,0,0,0,0,0,-1,'Westspark Workshop','','','','','','','','','','','','','','','',16712190,0,0,0,0,0,-500,0,0),
   (4612,571,4197,2675,1224754241,0,0,0,0,0,-1,'Eastspark Workshop','','','','','','','','','','','','','','','',16712190,0,0,0,0,0,-500,0,0);
 
-SET @areaFlagWintergrasp = 1 << 24;
-SET @areaFlagWintergrasp2 = 1 << 27;
+SET @AreaFlagWintergrasp = 1 << 24, @AreaFlagWintergrasp2 = 1 << 27;
 
 UPDATE areatable_dbc
-SET `Flags` = `Flags` & ~@areaFlagWintergrasp & ~@areaFlagWintergrasp2
-WHERE `ID` = @wintergraspAreaID
-  OR `ParentAreaID` = @wintergraspAreaID;
+SET `Flags` = `Flags` & ~@AreaFlagWintergrasp & ~@AreaFlagWintergrasp2
+WHERE `ID` = @WintergraspAreaId
+  OR `ParentAreaID` = @WintergraspAreaId;

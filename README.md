@@ -22,6 +22,13 @@ The goal of this module is to achieve a Remix-like experience (think [Pandaria](
     - [ ] Journey To The Sunwell ([Horde](https://wowclassicdb.com/wotlk/quest/24562) / [Alliance](https://wowclassicdb.com/wotlk/quest/24522)) is part of the [Restoring the Battered Hilt and Obtaining Quel’delar](https://www.warcrafttavern.com/wotlk/guides/battered-hilt-quest-guide/) questline that takes the player to the Isle of Quel’Danas.
 - [ ] No PVP
   - Wintergrasp should no longer be a PVP Zone
+- [ ] Infinite Bazaar
+  - The floating island next to Dalaran should act as a "main hub" for Remix players, where all necessary NPCs and amenities are available.
+  - [x] Innkeeper
+  - [x] Class trainer
+  - [ ] Mailbox
+  - [ ] Vendors
+  - [ ] ...
 - [ ] ...
 
 ## World Server Config
