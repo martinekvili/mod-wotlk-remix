@@ -20,6 +20,8 @@ The goal of this module is to achieve a Remix-like experience (think [Pandaria](
     - [ ] [The Etymidian](https://www.wowhead.com/wotlk/quest=12548/the-etymidian) is part of the Lifewarden series in Sholazar Basin that takes part in Un'Goro Crater.
     - [ ] [The Keeper's Favor](https://www.wowhead.com/wotlk/quest=13073/the-keepers-favor) and [The Will of the Naaru](https://www.wowhead.com/wotlk/quest=13081/the-will-of-the-naaru) are part of the [Crusader Bridenbrad](https://www.wowhead.com/wotlk/npc=30562/crusader-bridenbrad) storyline which take the player to Moonglade and Shattrath City respectively.
     - [ ] Journey To The Sunwell ([Horde](https://wowclassicdb.com/wotlk/quest/24562) / [Alliance](https://wowclassicdb.com/wotlk/quest/24522)) is part of the [Restoring the Battered Hilt and Obtaining Quel’delar](https://www.warcrafttavern.com/wotlk/guides/battered-hilt-quest-guide/) questline that takes the player to the Isle of Quel’Danas.
+- [ ] No PVP
+  - Wintergrasp should no longer be a PVP Zone
 - [ ] ...
 
 ## World Server Config
