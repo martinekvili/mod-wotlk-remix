@@ -60,8 +60,15 @@ void SpellAutoLearnMgr::AutoTeachSpells(Player *player) const
     if (!trainer)
         return;
 
-    TeachQuestSpells(player, trainer);
-    TeachTrainerSpells(player, trainer);
+    uint32 taughtSpellCount;
+    do
+    {
+        taughtSpellCount = 0u;
+
+        taughtSpellCount += TeachQuestSpells(player, trainer);
+        taughtSpellCount += TeachTrainerSpells(player, trainer);
+    } while (taughtSpellCount > 0u);
+
     GrantShamanTotems(player);
 }
 
@@ -74,19 +81,19 @@ Trainer::Trainer *SpellAutoLearnMgr::GetTrainerForPlayer(Player const *player)
     return sObjectMgr->GetTrainer(trainerCreatureId);
 }
 
-void SpellAutoLearnMgr::TeachTrainerSpells(Player *player, Trainer::Trainer *trainer)
+uint32 SpellAutoLearnMgr::TeachTrainerSpells(Player *player, Trainer::Trainer *trainer)
 {
-    tryTeachSpells(player, trainer->GetSpells(), trainer);
+    return tryTeachSpells(player, trainer->GetSpells(), trainer);
 }
 
-void SpellAutoLearnMgr::TeachQuestSpells(Player *player, Trainer::Trainer *trainer) const
+uint32 SpellAutoLearnMgr::TeachQuestSpells(Player *player, Trainer::Trainer *trainer) const
 {
     std::unordered_map<uint8, std::vector<Trainer::Spell>>::const_iterator it = questSpellsByClass.find(player->getClass());
     if (it == questSpellsByClass.end())
-        return;
+        return 0u;
 
     std::vector<Trainer::Spell> questSpells = it->second;
-    tryTeachSpells(player, questSpells, trainer);
+    return tryTeachSpells(player, questSpells, trainer);
 }
 
 void SpellAutoLearnMgr::GrantShamanTotems(Player *player) const
@@ -163,20 +170,29 @@ uint32 SpellAutoLearnMgr::getClassTrainerCreatureId(Player const *player)
     }
 }
 
-void SpellAutoLearnMgr::tryTeachSpells(Player *player, std::vector<Trainer::Spell> const &spells, Trainer::Trainer *trainer)
+uint32 SpellAutoLearnMgr::tryTeachSpells(Player *player, std::vector<Trainer::Spell> const &spells, Trainer::Trainer *trainer)
 {
+    uint32 count = 0u;
+
     for (Trainer::Spell const &spell : spells)
-        tryTeachSpell(player, &spell, trainer);
+    {
+        if (tryTeachSpell(player, &spell, trainer))
+            count++;
+    }
+
+    return count;
 }
 
-void SpellAutoLearnMgr::tryTeachSpell(Player *player, Trainer::Spell const *spell, Trainer::Trainer *trainer)
+bool SpellAutoLearnMgr::tryTeachSpell(Player *player, Trainer::Spell const *spell, Trainer::Trainer *trainer)
 {
     if (!trainer->CanTeachSpell(player, spell))
-        return;
+        return false;
 
     // learn explicitly or cast explicitly
     if (spell->IsCastable())
         player->CastSpell(player, spell->SpellId, true);
     else
         player->learnSpell(spell->SpellId, false);
+
+    return true;
 }

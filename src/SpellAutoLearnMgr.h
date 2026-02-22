@@ -18,9 +18,9 @@ public:
 
     static Trainer::Trainer *GetTrainerForPlayer(Player const *player);
 
-    static void TeachTrainerSpells(Player *player, Trainer::Trainer *trainer);
+    static uint32 TeachTrainerSpells(Player *player, Trainer::Trainer *trainer);
 
-    void TeachQuestSpells(Player *player, Trainer::Trainer *trainer) const;
+    uint32 TeachQuestSpells(Player *player, Trainer::Trainer *trainer) const;
 
     void GrantShamanTotems(Player *player) const;
 
@@ -38,8 +38,8 @@ private:
 
     static uint32 getClassTrainerCreatureId(Player const *player);
 
-    static void tryTeachSpells(Player *player, std::vector<Trainer::Spell> const &spells, Trainer::Trainer *trainer);
-    static void tryTeachSpell(Player *player, Trainer::Spell const *spell, Trainer::Trainer *trainer);
+    static uint32 tryTeachSpells(Player *player, std::vector<Trainer::Spell> const &spells, Trainer::Trainer *trainer);
+    static bool tryTeachSpell(Player *player, Trainer::Spell const *spell, Trainer::Trainer *trainer);
 
     std::unordered_map<uint8, std::vector<Trainer::Spell>> questSpellsByClass;
     std::vector<ShamanTotem> shamanTotems;
