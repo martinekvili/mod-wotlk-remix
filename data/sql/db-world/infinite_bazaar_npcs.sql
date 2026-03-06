@@ -1,7 +1,8 @@
 -- Add creature templates
 SET @StartCreatureTemplateEntry = 210000, @CreatureTemplateCount = 2,
   @TrainerId = 200,
-  @StartGossipMenuID = 80000, @GossipMenuCount = 2;
+  @StartGossipMenuID = 80000, @GossipMenuCount = 2,
+  @StartCreatureGuid = 2100000;
 
 DELETE FROM `creature_template`
 WHERE `entry` >= @StartCreatureTemplateEntry
@@ -64,11 +65,9 @@ VALUES
   (@StartGossipMenuID + 1, 0, 0, 'Purchase a Dual Talent Specialization.', 33765, 18, 16, 10373, 0, 0, 0, 'Are you sure you wish to purchase a Dual Talent Specialization?', 0, 0);
 
 -- Add creature spawns
-SET @StartCreatureGuid = 2100000, @CreatureCount = 2;
-
 DELETE FROM `creature`
-WHERE `guid` >= @StartCreatureGuid
-  AND `guid` < @StartCreatureGuid + @CreatureCount;
+WHERE `id1` >= @StartCreatureTemplateEntry
+  AND `id1` < @StartCreatureTemplateEntry + @CreatureTemplateCount;
 
 INSERT INTO `creature`
   (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`)
